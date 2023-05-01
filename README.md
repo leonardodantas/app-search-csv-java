@@ -1,18 +1,23 @@
-# Projeto de Busca em CSV
+# PROJETO DE BUSCA EM CSV
 
+<p>
 Projeto Java desenvolvido para estudos de busca em arquivos CSV. 
 Com ele, é possível especificar uma lista de parâmetros de busca e retornar uma lista de resultados correspondentes. 
 O projeto utiliza a linguagem Java e foi desenvolvido com o intuito de aprimorar habilidades em programação orientada a objetos e manipulação de arquivos.
+</p>
+
+<p>
 Através da implementação de uma série de buscas pré-definidas, o usuário pode facilmente buscar 
 por um ou mais resultados que correspondem a critérios específicos. Além disso, o código é altamente flexível, permitindo a fácil adição de novas funcionalidades e parâmetros de busca.
+</p>
+
+<p>
 O projeto foi desenvolvido utilizando uma arquitetura modular, separando as funcionalidades em diferentes classes e pacotes. Isso torna o código mais organizado, fácil de ler e de manter. 
 Além disso, o projeto foi construído seguindo boas práticas de programação, garantindo a segurança e confiabilidade do código.
+</p>
 
-Este codigo é apenas um exemplo de como podemos implementar buscas para nossos arquivos no formato CSV, ele não é flexivel ao ponto de funcionar para
-qualquer CSV, tendo a necessidade de ter o codigo alterado para tal. Nesse exemplo o nosso CSV possui as seguintes colunas, "id", "fistname", "lastname",
-"email", "profession", "city" e "details".
+## IMPLEMENTAÇÃO.
 
-# Utilização
 Para utilizarmos a busca, precisamos de uma nova instancia da classe SearchCSV, que pode ser obtida atraves do metodo
 estatico of, disponibilizado pela propria classe. 
 
@@ -48,10 +53,10 @@ public static Param of(final String column, final String value) {
 Apos instanciar um novo objeto SearchCSV, teremos dois metodos para busca, o findAll que devolve uma lista de todos os valores
 encontrados, e o metodo findOne, que devolve apenas o primeiro valor encontrado que condiz com todos os valores de parametros.
 
-# Padrão Strategy e Recursividade
+## PADRÃO STRATEGY E RECURSIVIDADE
 
 Para esse projeto busquei utilizar conceitos interessantes de programação, como o padrão Strategy e recursividade, acredito
-que tudo poderia ser feito de uma forma mais simples, entretanto acredito que o desafio de implementar esses conceitos
+que tudo poderia ser feito de uma forma mais simples, entretanto o desafio de implementar esses conceitos
 deixou o desafio mais interessante.
 
 Nesse projeto trabalhamos com um nivel de abstração em que algumas coisas só são bem visiveis em tempo de execução. Como por exemplo,
@@ -117,9 +122,27 @@ caso a lista de busca e a lista de pessoas ainda não esteja vazia, a lista de s
 a mesma função, porem sem a ultima busca executada, e a nova lista de pessoas tambem é enviada até que uma das condições
 apresentadas anteriormente seja alcançada.
 
+## Apêndice
 
+<p>
+Este codigo é apenas um exemplo de como podemos implementar buscas para nossos arquivos no formato CSV, ele não é flexivel ao ponto de funcionar para
+qualquer CSV, tendo a necessidade de ter o codigo alterado para tal. Nesse exemplo o nosso CSV possui as seguintes colunas, "id", "fistname", "lastname",
+"email", "profession", "city" e "details".
+</p>
 
+## Tecnologias
 
+<div style="display: inline_block">
+  <img align="center" alt="java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" />
+</div>
 
+### :sunglasses: Autor
 
+Criado por Leonardo Rodrigues Dantas.
 
+[![Linkedin Badge](https://img.shields.io/badge/-Leonardo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/leonardo-rodrigues-dantas/)](https://www.linkedin.com/in/leonardo-rodrigues-dantas/)
+[![Gmail Badge](https://img.shields.io/badge/-leonardordnt1317@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:leonardordnt1317@gmail.com)](mailto:leonardordnt1317@gmail.com)
+
+## Licença
+
+Este projeto esta sobe a licença MIT.

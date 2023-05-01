@@ -1,4 +1,6 @@
-package search;
+package search.domain;
+
+import search.findType.Find;
 
 import java.util.Locale;
 

@@ -1,22 +1,22 @@
-package search.searches;
+package search.columns;
 
-import search.Find;
-import search.Person;
+import search.findType.Find;
+import search.domain.Person;
 
 import java.util.List;
 
-public class ProfessionSearch implements ISearch {
+public class ProfessionColumnSearch implements IColumnSearch {
 
     private final String value;
     private final Find find;
 
-    private ProfessionSearch(final String value, final Find find) {
+    private ProfessionColumnSearch(final String value, final Find find) {
         this.value = value;
         this.find = find;
     }
 
-    public static ISearch of(final String value, final Find find) {
-        return new ProfessionSearch(value, find);
+    public static IColumnSearch of(final String value, final Find find) {
+        return new ProfessionColumnSearch(value, find);
     }
 
     @Override

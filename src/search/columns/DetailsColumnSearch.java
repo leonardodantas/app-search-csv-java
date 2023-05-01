@@ -1,21 +1,21 @@
-package search.searches;
+package search.columns;
 
-import search.Find;
-import search.Person;
+import search.findType.Find;
+import search.domain.Person;
 
 import java.util.List;
 
-public class DetailsSearch implements ISearch {
+public class DetailsColumnSearch implements IColumnSearch {
     private final String value;
     private final Find find;
 
-    private DetailsSearch(final String value, final Find find) {
+    private DetailsColumnSearch(final String value, final Find find) {
         this.value = value;
         this.find = find;
     }
 
-    public static ISearch of(final String value, final Find find) {
-        return new DetailsSearch(value, find);
+    public static IColumnSearch of(final String value, final Find find) {
+        return new DetailsColumnSearch(value, find);
     }
 
     @Override

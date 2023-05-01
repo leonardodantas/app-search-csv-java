@@ -1,4 +1,6 @@
-package search;
+package search.converter;
+
+import search.domain.Person;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

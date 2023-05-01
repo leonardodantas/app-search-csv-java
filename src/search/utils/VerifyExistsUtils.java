@@ -1,12 +1,17 @@
-package search;
+package search.utils;
+
+import search.domain.Param;
+import search.exceptions.ParamNotFoundException;
 
 import java.util.List;
+import java.util.Set;
 
-public class VerifyExists {
+public class VerifyExistsUtils {
 
-    private VerifyExists(){}
+    private VerifyExistsUtils() {
+    }
 
-    private static final List<String> keys = List.of(
+    private static final Set<String> keys = Set.of(
             "id",
             "firstname",
             "lastname",
@@ -16,13 +21,13 @@ public class VerifyExists {
             "details"
     );
 
-    public static void keys(final List<Param> params) {
+    public static void verify(final List<Param> params) {
         params.forEach(param ->
                 keys.stream()
                         .filter(key -> key.equalsIgnoreCase(param.getColumn()))
                         .findFirst()
                         .orElseThrow(() ->
-                                new RuntimeException(String.format("%s not found", param))
+                                new ParamNotFoundException(String.format("%s not found", param))
                         ));
     }
 }

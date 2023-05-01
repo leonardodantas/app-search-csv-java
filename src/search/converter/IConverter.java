@@ -1,4 +1,4 @@
-package search;
+package search.converter;
 
 public interface IConverter<T,U>{
 

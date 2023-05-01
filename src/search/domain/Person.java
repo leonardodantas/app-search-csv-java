@@ -1,4 +1,4 @@
-package search;
+package search.domain;
 
 public class Person {
 

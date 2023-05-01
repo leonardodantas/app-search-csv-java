@@ -1,22 +1,22 @@
-package search.searches;
+package search.columns;
 
-import search.Find;
-import search.Person;
+import search.findType.Find;
+import search.domain.Person;
 
 import java.util.List;
 
-public class FirstNameSearch implements ISearch {
+public class FirstNameColumnSearch implements IColumnSearch {
 
     private final String value;
     private final Find find;
 
-    private FirstNameSearch(final String value, final Find find) {
+    private FirstNameColumnSearch(final String value, final Find find) {
         this.value = value;
         this.find = find;
     }
 
-    public static ISearch of(final String value, final Find find) {
-        return new FirstNameSearch(value, find);
+    public static IColumnSearch of(final String value, final Find find) {
+        return new FirstNameColumnSearch(value, find);
     }
 
     @Override

@@ -1,5 +1,5 @@
-import search.Find;
-import search.Param;
+import search.findType.Find;
+import search.domain.Param;
 import search.SearchCSV;
 
 import java.util.List;

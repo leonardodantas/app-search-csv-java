@@ -78,7 +78,7 @@ public class EmailColumnSearch implements IColumnSearch {
                 .collect(Collectors.toList());
     }
 ```
-Neste projeto, utilizamos o padrão Strategy para implementar diferentes algoritmos de busca em colunas específicas de um arquivo CSV. Isso é feito através do enum SearchType, que mapeia o nome da coluna passado como parâmetro para uma classe que implementa a interface IColumnSearch e define o algoritmo de busca a ser executado. Dessa forma, podemos facilmente adicionar novas colunas de busca apenas criando novas classes que implementam a interface IColumnSearch e adicionando uma nova entrada no enum SearchType correspondente
+Neste projeto, utilizamos o padrão Strategy para implementar diferentes algoritmos de busca em colunas específicas de um arquivo CSV. Isso é feito através do enum SearchType, que mapeia o nome da coluna passado como parâmetro para uma classe que implementa a interface IColumnSearch e define o algoritmo de busca a ser executado. Dessa forma, podemos facilmente adicionar novas colunas de busca apenas criando novas classes que implementam a interface IColumnSearch e adicionando uma nova entrada no enum SearchType correspondente.
 
 ```
 final var searchType = SearchType.valueOf(param.getColumn())
@@ -107,7 +107,7 @@ private static List<Person> recursiveSearchAll(final List<IColumnSearch> searche
      return recursiveSearchAll(searches, personsFound);
 }
 ```
-A lógica da função recursiva é bastante simples: ela começa executando a primeira busca da lista na lista de pessoas original. 
+A lógica da função recursiva é bastante simples: ela começa executando a primeira busca na lista de pessoas original. 
 Em seguida, verifica se tanto a lista de buscas quanto a lista de pessoas ainda têm itens a serem processados. 
 Caso positivo, a função é chamada novamente de forma recursiva, com a lista de buscas sem a última busca executada e a nova lista de pessoas encontradas. Esse processo continua até que uma das condições apresentadas anteriormente seja alcançada.
 

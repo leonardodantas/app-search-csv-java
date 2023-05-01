@@ -32,17 +32,15 @@ final var file = "/home/leo-dantas/Downloads/person.csv";
 
 final var params = List.of(Param.of("profession", "des", Find.CONTAINS));
 ```
-O parametro file é do tipo String, enquanto params é uma lista de Param. Para a criação de um Param
-tambem temos o metodo estatico of, onde esperamos o nome da coluna, o valor para buscarmos e por 
-ultimo de forma opcional podemos dizer se o valor de busca deve ser igual com o enum Find.EQUALS, ou
-se a coluna deve apenas conter o valor com o enum Find.CONTAINS, caso nenhum valor de enum seja atribuido
-então o valor padrão será o Find.EQUALS.
+O parâmetro file é uma String que representa o caminho para o arquivo CSV a ser lido. Já params é uma lista de objetos Param, que contêm informações sobre as colunas e valores que serão utilizados na busca.
+
+Para criar um objeto Param, é possível utilizar o método estático of, que espera como parâmetros o nome da coluna, o valor que se deseja buscar e, opcionalmente, uma opção de busca que pode ser EQUALS para buscar valores exatos ou CONTAINS para buscar valores parciais. Caso nenhuma opção de busca seja informada, a busca padrão será por valores exatos (EQUALS).
 
 ```
 final var params = List.of(Param.of("profession", "des"));
 ```
 
-O codigo dentro do metodo estatico ficaria dessa maneira:
+O código dentro do método estático ficaria assim:
 
 ```
 public static Param of(final String column, final String value) {
@@ -50,18 +48,13 @@ public static Param of(final String column, final String value) {
 }
 ```
 
-Apos instanciar um novo objeto SearchCSV, teremos dois metodos para busca, o findAll que devolve uma lista de todos os valores
-encontrados, e o metodo findOne, que devolve apenas o primeiro valor encontrado que condiz com todos os valores de parametros.
+Depois de criar uma nova instância de SearchCSV, existem dois métodos disponíveis para busca: findAll(), que retorna uma lista de todos os valores encontrados, e findOne(), que retorna apenas o primeiro valor encontrado que corresponde a todos os parâmetros especificados.
 
 ## PADRÃO STRATEGY E RECURSIVIDADE
 
-Para esse projeto busquei utilizar conceitos interessantes de programação, como o padrão Strategy e recursividade, acredito
-que tudo poderia ser feito de uma forma mais simples, entretanto o desafio de implementar esses conceitos
-deixou o desafio mais interessante.
+O projeto foi desenvolvido com o intuito de explorar conceitos interessantes de programação, como o padrão Strategy e a recursividade, adicionando um nível de abstração que permitiu implementar uma solução mais complexa. Embora existam maneiras mais simples de resolver o problema, a inclusão desses conceitos tornou o desafio mais interessante e estimulante.
 
-Nesse projeto trabalhamos com um nivel de abstração em que algumas coisas só são bem visiveis em tempo de execução. Como por exemplo,
-temos uma interface chamada IColumnSeach, onde cada coluna existente em nosso CSV, implementa essa interface com o seu metodo findAll, 
-como no codigo abaixo:
+O uso de abstrações permitiu que algumas funcionalidades só fossem claramente visíveis em tempo de execução, como a interface IColumnSearch. Essa interface é implementada por cada coluna do arquivo CSV e contém um método findAll para realizar a busca. O código abaixo ilustra essa implementação:
 
 ```
 public class EmailColumnSearch implements IColumnSearch {
@@ -85,19 +78,16 @@ public class EmailColumnSearch implements IColumnSearch {
                 .collect(Collectors.toList());
     }
 ```
-
-Essas classes de buscas são instanciadas atraves de nosso padrão strategy, que pode ser observado no enum SearchType, a partir do nome
-da coluna que passamos em nossa lista de parametros.
+Neste projeto, utilizamos o padrão Strategy para implementar diferentes algoritmos de busca em colunas específicas de um arquivo CSV. Isso é feito através do enum SearchType, que mapeia o nome da coluna passado como parâmetro para uma classe que implementa a interface IColumnSearch e define o algoritmo de busca a ser executado. Dessa forma, podemos facilmente adicionar novas colunas de busca apenas criando novas classes que implementam a interface IColumnSearch e adicionando uma nova entrada no enum SearchType correspondente
 
 ```
 final var searchType = SearchType.valueOf(param.getColumn())
 ```
 
-Por fim teremos uma lista de IColumnSeach, um tipo de busca para cada parametro, onde cada objeto
-dessa lista possui o seu tipo de implementação a ser executada.
-
-A nossa busca é realizada dentro de uma função recursiva, que recebe como parametro, a lista de
-IColumnSeach e a lista de objetos convertidos do CSV.
+Uma vez que temos uma lista de parâmetros de busca, para cada um desses parâmetros instanciamos um objeto IColumnSearch correspondente, 
+resultando em uma lista de diferentes tipos de busca. Essa lista é então passada para uma função recursiva, 
+juntamente com a lista de objetos convertidos do CSV. É nessa função que a busca é realizada, utilizando cada objeto 
+IColumnSearch da lista para realizar a busca em cada objeto da lista de objetos convertidos.
 
 ```
 recursiveSearchAll(new ArrayList<>(searches), persons);
@@ -117,10 +107,9 @@ private static List<Person> recursiveSearchAll(final List<IColumnSearch> searche
      return recursiveSearchAll(searches, personsFound);
 }
 ```
-A função recursiva funciona de forma simples, ela busca o primeiro search da lista e executa a execução sobre a lista inicial, 
-caso a lista de busca e a lista de pessoas ainda não esteja vazia, a lista de searchs e enviada de forma recursiva para
-a mesma função, porem sem a ultima busca executada, e a nova lista de pessoas tambem é enviada até que uma das condições
-apresentadas anteriormente seja alcançada.
+A lógica da função recursiva é bastante simples: ela começa executando a primeira busca da lista na lista de pessoas original. 
+Em seguida, verifica se tanto a lista de buscas quanto a lista de pessoas ainda têm itens a serem processados. 
+Caso positivo, a função é chamada novamente de forma recursiva, com a lista de buscas sem a última busca executada e a nova lista de pessoas encontradas. Esse processo continua até que uma das condições apresentadas anteriormente seja alcançada.
 
 ## Apêndice
 

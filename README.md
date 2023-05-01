@@ -81,7 +81,45 @@ public class EmailColumnSearch implements IColumnSearch {
     }
 ```
 
-Essas classes de buscas são instanciadas atraves de nosso padrão strategy, que pode ser observado no enum 
+Essas classes de buscas são instanciadas atraves de nosso padrão strategy, que pode ser observado no enum SearchType, a partir do nome
+da coluna que passamos em nossa lista de parametros.
+
+```
+final var searchType = SearchType.valueOf(param.getColumn())
+```
+
+Por fim teremos uma lista de IColumnSeach, um tipo de busca para cada parametro, onde cada objeto
+dessa lista possui o seu tipo de implementação a ser executada.
+
+A nossa busca é realizada dentro de uma função recursiva, que recebe como parametro, a lista de
+IColumnSeach e a lista de objetos convertidos do CSV.
+
+```
+recursiveSearchAll(new ArrayList<>(searches), persons);
+```
+Essa é a implementação de nossa função recursiva:
+
+```
+private static List<Person> recursiveSearchAll(final List<IColumnSearch> searches, final List<Person> persons) {
+     final var search = searches.stream().findFirst().orElseThrow();
+     final var personsFound = search.findAll(persons);
+     searches.remove(search);
+
+     if (searches.isEmpty() || personsFound.isEmpty()) {
+            return personsFound;
+     }
+
+     return recursiveSearchAll(searches, personsFound);
+}
+```
+A função recursiva funciona de forma simples, ela busca o primeiro search da lista e executa a execução sobre a lista inicial, 
+caso a lista de busca e a lista de pessoas ainda não esteja vazia, a lista de searchs e enviada de forma recursiva para
+a mesma função, porem sem a ultima busca executada, e a nova lista de pessoas tambem é enviada até que uma das condições
+apresentadas anteriormente seja alcançada.
+
+
+
+
 
 
 
